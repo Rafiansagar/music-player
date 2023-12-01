@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Music Player</title>
+
+	<link href="rs-layouts.css" rel="stylesheet">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+        body {
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            font-family: 'Roboto', sans-serif;
+        }
+        body .rs-music-section {
+            width: 100%;
+        }
+        .single-audio {
+          background: #0a0e1f;
+          padding: 30px;
+          text-align: center;
+          transition: all 0.3s ease 0s;
+          border-radius: 6px;
+          overflow: hidden;
+        }
+        .single-audio .rs-music {
+          width: 100%;
+          margin-bottom: 10px;
+          display: none;
+        }
+        .single-audio .rs-music::-webkit-media-controls-current-time-display, .single-audio .rs-music::-webkit-media-controls-time-remaining-display, .single-audio .rs-music::-webkit-media-controls-start-playback-button, .single-audio .rs-music::-webkit-media-controls-end-playback-button, .single-audio .rs-music::-webkit-media-controls-volume-slider, .single-audio .rs-music::-webkit-media-controls-mute-button, .single-audio .rs-music::-webkit-media-controls-play-button, .single-audio .rs-music::-webkit-media-controls-current-time-display {
+          display: none !important;
+        }
+        .single-audio .album_img {
+          overflow: hidden;
+          border-radius: 50%;
+        }
+        .single-audio .album_img img {
+          width: 100%;
+          height: auto;
+        }
+        .single-audio .player-bottom {
+          background: #0a0e1f;
+          margin-top: -65px;
+          z-index: 1;
+          position: relative;
+          padding-top: 20px;
+        }
+        .single-audio .player-bottom .track-info .name,
+        .single-audio .player-bottom .track-info .artist {
+          color: #fff;
+        }
+        .single-audio .player-bottom .track-info .name {
+            margin-bottom: 15px;
+        }
+        .single-audio .player-bottom .progress-detail {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin: 20px 0;
+        }
+        .single-audio .player-bottom .progress-detail .progress-container {
+          width: 100%;
+          height: 4px;
+          background-color: #ddd;
+          border-radius: 4px;
+          position: relative;
+          cursor: pointer;
+        }
+        .single-audio .player-bottom .progress-detail .progress-container .progress-thumb {
+          width: 1px;
+          height: 4px;
+          background-color: #C3002F;
+          cursor: grab;
+          position: absolute;
+        }
+        .single-audio .player-bottom .progress-detail .progress-container .progress-thumb::after {
+          position: absolute;
+          content: "";
+          right: -6px;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          background: #C3002F;
+        }
+        .single-audio .player-bottom .progress-detail .currentTime,
+        .single-audio .player-bottom .progress-detail .total-duration-custom {
+          line-height: 1;
+          color: #fff;
+        }
+        .single-audio .player-bottom .audio-controller {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+        }
+        .single-audio .player-bottom .audio-controller .player-btn-comn {
+          cursor: pointer;
+          font-size: 13px;
+          color: #fff;
+          transition: all 0.3s ease 0s;
+        }
+        .single-audio .player-bottom .audio-controller .player-btn-comn:hover {
+          color: #C3002F;
+        }
+        .single-audio .player-bottom .audio-controller .player-btn-comn.playPause {
+          width: 40px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #222635;
+          border-radius: 50%;
+          color: #C3002F;
+        }
+        .single-audio .player-bottom .audio-controller .player-btn-comn.playPause i:first-child {
+          display: none;
+        }
+        .single-audio .player-bottom .audio-controller .player-btn-comn.playPause i:last-child {
+          display: inline-block;
+        }
+        .single-audio.playing .audio-controller .player-btn-comn.playPause i:first-child {
+          display: inline-block;
+        }
+        .single-audio.playing .audio-controller .player-btn-comn.playPause i:last-child {
+          display: none;
+        }
+        .single-audio.paused .audio-controller .player-btn-comn.playPause i:first-child {
+          display: none;
+        }
+        .single-audio.paused .audio-controller .player-btn-comn.playPause i:last-child {
+          display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div class="rs-music-section">
+        <div class="container">
+            <div class="row no-gutter">
+                <div class="col-lg-3 col-sm-6">
+                    <!-- Audio Start -->
+                    <div class="single-audio">
+                        <audio class="rs-music" controls controlsList="nodownload noplaybackrate">
+                            <source src="free-music2.mp3" type="audio/mp3">
+                        </audio>
+                        <div class="album_img">
+                            <img src="https://placehold.co/400" alt="">
+                        </div>
+                        <div class="player-bottom">
+                            <div class="track-info">
+                                <h4 class="name">Breakup Mashup</h4>
+                                <div class="artist">by Hero Alom</div>
+                            </div>
+                            <div class="progress-detail">
+                                <div class="currentTime time-common">0:00</div>
+                                <div class="progress-container">
+                                    <div class="progress-thumb"></div>
+                                </div>
+                                <div class="total-duration-custom time-common">0:00</div>
+                            </div>
+                            <div class="audio-controller">
+                                <div class="backward player-btn-comn"><i class="">⏪</i></div>
+                                <div class="playPause player-btn-comn"><i class="">⏸️</i><i class="">▶️</i></div>
+                                <div class="forward player-btn-comn"><i class="">⏩</i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Audio End -->
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <!-- Audio Start -->
+                    <div class="single-audio">
+                        <audio class="rs-music" controls controlsList="nodownload noplaybackrate">
+                            <source src="free-music2.mp3" type="audio/mp3">
+                        </audio>
+                        <div class="album_img">
+                            <img src="https://placehold.co/400" alt="">
+                        </div>
+                        <div class="player-bottom">
+                            <div class="track-info">
+                                <h4 class="name">Breakup Mashup 2</h4>
+                                <div class="artist">by Hero Alom</div>
+                            </div>
+                            <div class="progress-detail">
+                                <div class="currentTime time-common">0:00</div>
+                                <div class="progress-container">
+                                    <div class="progress-thumb"></div>
+                                </div>
+                                <div class="total-duration-custom time-common">0:00</div>
+                            </div>
+                            <div class="audio-controller">
+                                <div class="backward player-btn-comn"><i class="">⏪</i></div>
+                                <div class="playPause player-btn-comn"><i class="">⏸️</i><i class="">▶️</i></div>
+                                <div class="forward player-btn-comn"><i class="">⏩</i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Audio End -->
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <!-- Audio Start -->
+                    <div class="single-audio">
+                        <audio class="rs-music" controls controlsList="nodownload noplaybackrate">
+                            <source src="free-music2.mp3" type="audio/mp3">
+                        </audio>
+                        <div class="album_img">
+                            <img src="https://placehold.co/400" alt="">
+                        </div>
+                        <div class="player-bottom">
+                            <div class="track-info">
+                                <h4 class="name">Breakup Mashup 3</h4>
+                                <div class="artist">by Hero Alom</div>
+                            </div>
+                            <div class="progress-detail">
+                                <div class="currentTime time-common">0:00</div>
+                                <div class="progress-container">
+                                    <div class="progress-thumb"></div>
+                                </div>
+                                <div class="total-duration-custom time-common">0:00</div>
+                            </div>
+                            <div class="audio-controller">
+                                <div class="backward player-btn-comn"><i class="">⏪</i></div>
+                                <div class="playPause player-btn-comn"><i class="">⏸️</i><i class="">▶️</i></div>
+                                <div class="forward player-btn-comn"><i class="">⏩</i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Audio End -->
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <!-- Audio Start -->
+                    <div class="single-audio">
+                        <audio class="rs-music" controls controlsList="nodownload noplaybackrate">
+                            <source src="free-music2.mp3" type="audio/mp3">
+                        </audio>
+                        <div class="album_img">
+                            <img src="https://placehold.co/400" alt="">
+                        </div>
+                        <div class="player-bottom">
+                            <div class="track-info">
+                                <h4 class="name">Breakup Mashup 4</h4>
+                                <div class="artist">by Hero Alom</div>
+                            </div>
+                            <div class="progress-detail">
+                                <div class="currentTime time-common">0:00</div>
+                                <div class="progress-container">
+                                    <div class="progress-thumb"></div>
+                                </div>
+                                <div class="total-duration-custom time-common">0:00</div>
+                            </div>
+                            <div class="audio-controller">
+                                <div class="backward player-btn-comn"><i class="">⏪</i></div>
+                                <div class="playPause player-btn-comn"><i class="">⏸️</i><i class="">▶️</i></div>
+                                <div class="forward player-btn-comn"><i class="">⏩</i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Audio End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+	<!-- main jquery  -->
+	<script src="jquery.min.js"></script>
+
+    <script>
+        // Music Player Script
+        document.addEventListener("DOMContentLoaded", function () {
+          var currentAudio = null;
+          var audioElements = document.querySelectorAll(".rs-music");
+          audioElements.forEach(function (audio) {
+            var playPauseButton = audio.parentElement.querySelector(".playPause");
+            var backwardButton = audio.parentElement.querySelector(".backward");
+            var forwardButton = audio.parentElement.querySelector(".forward");
+            var currentTimeDisplay = audio.parentElement.querySelector(".currentTime");
+            var totalDurationDisplay = audio.parentElement.querySelector(".total-duration-custom");
+            var progressContainer = audio.parentElement.querySelector(".progress-container");
+            var progressThumb = progressContainer.querySelector(".progress-thumb");
+            if (playPauseButton) {
+              playPauseButton.addEventListener("click", function () {
+                if (currentAudio && currentAudio !== audio) {
+                  currentAudio.pause();
+                  removePlayingClass(currentAudio);
+                }
+                if (audio.paused) {
+                  audio.play();
+                  currentAudio = audio;
+                  addPlayingClass(currentAudio);
+                } else {
+                  audio.pause();
+                  currentAudio = null;
+                  removePlayingClass(audio);
+                }
+              });
+            }
+            if (backwardButton) {
+              backwardButton.addEventListener("click", function () {
+                var currentTime = audio.currentTime;
+                audio.currentTime = Math.max(0, currentTime - 10);
+              });
+            }
+            if (forwardButton) {
+              forwardButton.addEventListener("click", function () {
+                var currentTime = audio.currentTime;
+                audio.currentTime = currentTime + 10;
+              });
+            }
+            audio.addEventListener("timeupdate", function () {
+              var minutes = Math.floor(audio.currentTime / 60);
+              var seconds = Math.floor(audio.currentTime % 60);
+              var formattedTime = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+              if (currentTimeDisplay) {
+                currentTimeDisplay.textContent = formattedTime;
+              }
+            });
+            audio.addEventListener("loadedmetadata", function () {
+                var minutes = Math.floor(audio.duration / 60);
+                var seconds = Math.floor(audio.duration % 60);
+                var formattedDuration = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+                totalDurationDisplay.textContent = /*"Total Duration: " +*/ formattedDuration;
+            });
+            if (progressContainer && progressThumb) {
+              function updateProgressThumb() {
+                var percentage = (audio.currentTime / audio.duration) * 100;
+                progressThumb.style.width = percentage + "%";
+              }
+              function updateAudioProgress(event) {
+                var rect = progressContainer.getBoundingClientRect();
+                var percentage = (event.clientX - rect.left) / rect.width;
+                audio.currentTime = percentage * audio.duration;
+              }
+              audio.addEventListener("timeupdate", updateProgressThumb);
+              progressContainer.addEventListener("click", updateAudioProgress);
+              var isDragging = false;
+              progressThumb.addEventListener("mousedown", function () {
+                isDragging = true;
+              });
+              document.addEventListener("mousemove", function (event) {
+                if (isDragging) {
+                  updateAudioProgress(event);
+                }
+              });
+              document.addEventListener("mouseup", function () {
+                isDragging = false;
+              });
+            }
+          });
+          function addPlayingClass(audioElement) {
+            if (audioElement && audioElement.parentElement) {
+              audioElement.parentElement.classList.add("playing");
+              audioElement.parentElement.classList.remove("paused");
+            }
+          }
+          function removePlayingClass(audioElement) {
+            if (audioElement && audioElement.parentElement) {
+              audioElement.parentElement.classList.remove("playing");
+              audioElement.parentElement.classList.add("paused");
+            }
+          }
+        });
+    </script>
+
+
+</body>
+</html>
