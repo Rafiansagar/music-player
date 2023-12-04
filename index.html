@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Music Player</title>
 
-	<link href="rs-layouts.css" rel="stylesheet">
+	<link href="fonts/remixicon.css" rel="stylesheet">
+    <link href="rs-layouts.css" rel="stylesheet">
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
@@ -17,6 +18,7 @@
             justify-content: center;
             width: 100%;
             font-family: 'Roboto', sans-serif;
+            background: url(navy-blue-bg.jpg);
         }
         body .rs-music-section {
             width: 100%;
@@ -28,6 +30,8 @@
           transition: all 0.3s ease 0s;
           border-radius: 6px;
           overflow: hidden;
+          background: linear-gradient(49deg, #ffffff4f 0%, transparent 50%);
+            box-shadow: 0px 0px 0px 1px rgb(255, 255, 255, 0.15);
         }
         .single-audio .rs-music {
           width: 100%;
@@ -46,11 +50,8 @@
           height: auto;
         }
         .single-audio .player-bottom {
-          background: #0a0e1f;
-          margin-top: -65px;
           z-index: 1;
           position: relative;
-          padding-top: 20px;
         }
         .single-audio .player-bottom .track-info .name,
         .single-audio .player-bottom .track-info .artist {
@@ -76,7 +77,7 @@
         .single-audio .player-bottom .progress-detail .progress-container .progress-thumb {
           width: 1px;
           height: 4px;
-          background-color: #C3002F;
+          background-color: #83ff00;
           cursor: grab;
           position: absolute;
         }
@@ -89,7 +90,7 @@
           width: 12px;
           height: 12px;
           border-radius: 50%;
-          background: #C3002F;
+          background: #83ff00;
         }
         .single-audio .player-bottom .progress-detail .currentTime,
         .single-audio .player-bottom .progress-detail .total-duration-custom {
@@ -109,7 +110,7 @@
           transition: all 0.3s ease 0s;
         }
         .single-audio .player-bottom .audio-controller .player-btn-comn:hover {
-          color: #C3002F;
+          color: #83ff00;
         }
         .single-audio .player-bottom .audio-controller .player-btn-comn.playPause {
           width: 40px;
@@ -119,7 +120,7 @@
           justify-content: center;
           background: #222635;
           border-radius: 50%;
-          color: #C3002F;
+          color: #83ff00;
         }
         .single-audio .player-bottom .audio-controller .player-btn-comn.playPause i:first-child {
           display: none;
@@ -154,7 +155,7 @@
                             <source src="free-music2.mp3" type="audio/mp3">
                         </audio>
                         <div class="album_img">
-                            <img src="https://placehold.co/400" alt="">
+                            <img src="album-disk.png" alt="">
                         </div>
                         <div class="player-bottom">
                             <div class="track-info">
@@ -169,9 +170,9 @@
                                 <div class="total-duration-custom time-common">0:00</div>
                             </div>
                             <div class="audio-controller">
-                                <div class="backward player-btn-comn"><i class="">⏪</i></div>
-                                <div class="playPause player-btn-comn"><i class="">⏸️</i><i class="">▶️</i></div>
-                                <div class="forward player-btn-comn"><i class="">⏩</i></div>
+                                <div class="backward player-btn-comn"><i class="ri-skip-back-fill"></i></div>
+                                <div class="playPause player-btn-comn"><i class="ri-pause-line"></i><i class="ri-play-fill"></i></div>
+                                <div class="forward player-btn-comn"><i class="ri-skip-forward-fill"></i></div>
                             </div>
                         </div>
                     </div>
@@ -184,7 +185,7 @@
                             <source src="free-music2.mp3" type="audio/mp3">
                         </audio>
                         <div class="album_img">
-                            <img src="https://placehold.co/400" alt="">
+                            <img src="album-disk.png" alt="">
                         </div>
                         <div class="player-bottom">
                             <div class="track-info">
@@ -199,9 +200,9 @@
                                 <div class="total-duration-custom time-common">0:00</div>
                             </div>
                             <div class="audio-controller">
-                                <div class="backward player-btn-comn"><i class="">⏪</i></div>
-                                <div class="playPause player-btn-comn"><i class="">⏸️</i><i class="">▶️</i></div>
-                                <div class="forward player-btn-comn"><i class="">⏩</i></div>
+                                <div class="backward player-btn-comn"><i class="ri-skip-back-fill"></i></div>
+                                <div class="playPause player-btn-comn"><i class="ri-pause-line"></i><i class="ri-play-fill"></i></div>
+                                <div class="forward player-btn-comn"><i class="ri-skip-forward-fill"></i></div>
                             </div>
                         </div>
                     </div>
@@ -214,7 +215,7 @@
                             <source src="free-music2.mp3" type="audio/mp3">
                         </audio>
                         <div class="album_img">
-                            <img src="https://placehold.co/400" alt="">
+                            <img src="album-disk.png" alt="">
                         </div>
                         <div class="player-bottom">
                             <div class="track-info">
@@ -229,9 +230,9 @@
                                 <div class="total-duration-custom time-common">0:00</div>
                             </div>
                             <div class="audio-controller">
-                                <div class="backward player-btn-comn"><i class="">⏪</i></div>
-                                <div class="playPause player-btn-comn"><i class="">⏸️</i><i class="">▶️</i></div>
-                                <div class="forward player-btn-comn"><i class="">⏩</i></div>
+                                <div class="backward player-btn-comn"><i class="ri-skip-back-fill"></i></div>
+                                <div class="playPause player-btn-comn"><i class="ri-pause-line"></i><i class="ri-play-fill"></i></div>
+                                <div class="forward player-btn-comn"><i class="ri-skip-forward-fill"></i></div>
                             </div>
                         </div>
                     </div>
@@ -244,7 +245,7 @@
                             <source src="free-music2.mp3" type="audio/mp3">
                         </audio>
                         <div class="album_img">
-                            <img src="https://placehold.co/400" alt="">
+                            <img src="album-disk.png" alt="">
                         </div>
                         <div class="player-bottom">
                             <div class="track-info">
@@ -259,9 +260,9 @@
                                 <div class="total-duration-custom time-common">0:00</div>
                             </div>
                             <div class="audio-controller">
-                                <div class="backward player-btn-comn"><i class="">⏪</i></div>
-                                <div class="playPause player-btn-comn"><i class="">⏸️</i><i class="">▶️</i></div>
-                                <div class="forward player-btn-comn"><i class="">⏩</i></div>
+                                <div class="backward player-btn-comn"><i class="ri-skip-back-fill"></i></div>
+                                <div class="playPause player-btn-comn"><i class="ri-pause-line"></i><i class="ri-play-fill"></i></div>
+                                <div class="forward player-btn-comn"><i class="ri-skip-forward-fill"></i></div>
                             </div>
                         </div>
                     </div>
